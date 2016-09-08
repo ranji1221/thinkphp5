@@ -17,5 +17,25 @@ return [
         ':id'   => ['index/hello', ['method' => 'get'], ['id' => '\d+']],
         ':name' => ['index/hello', ['method' => 'post']],
     ],
-
+	
+	//-- 简化路由访问
+	//'hello/[:name]' => 'index/index/hello',
+	
+	//-- 定义闭包
+	/*'hello/[:name]' => function($name){
+		return 'Hello, My Name is ' . $name;
+	}*/
+	
+	//-- 由于'index'模块被配置为默认的模块，所以后面匹配的模块名可以省略
+	/*'blog/:year/:month' => ['blog/archive',['method'=>'get'],['year'=>'\d{4}','month'=>'\d{2}']],
+	'blog/:id' => ['blog/get',['method'=>'get'],['id'=>'\d+']],
+	'blog/:name' => ['blog/read',['method'=>'get'],['name'=>'\w+']],*/
+	
+	//-- 上面的配置鉴于是同一模块（index模块）的同一控制器（blog）的配置，所以可以利用下面简化的配置
+	'[blog]' =>[
+		':year/:month' => ['blog/archive',['method'=>'get'],['year'=>'\d{4}','month'=>'\d{2}']],
+		':id' => ['blog/get',['method'=>'get'],['id'=>'\d+']],
+		':name' => ['blog/read',['method'=>'get'],['name'=>'\w+']],
+	],
+	
 ];
