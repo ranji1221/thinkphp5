@@ -11,12 +11,25 @@
 
 return [
     '__pattern__' => [
+		'id' => '\d+',
         'name' => '\w+',
     ],
     '[hello]'     => [
         ':id'   => ['index/hello', ['method' => 'get'], ['id' => '\d+']],
         ':name' => ['index/hello', ['method' => 'post']],
     ],
+	
+	//-- 配置Index模块下的User Controller的路由
+	//-- 由于user控制器是处于模块的Index模块下，所以可以省略掉'index'模块
+	'[user]' => [
+		'index' => 'index/user/index',
+		'create' => 'index/user/create',
+		'add' => 'index/user/add',
+		'addList' => 'index/user/addList',
+		'update/:id' => 'index/user/update',
+		'delete/:id' => 'index/user/delete',
+		':id' => 'index/user/read',
+	],
 	
 	//-- 简化路由访问
 	//'hello/[:name]' => 'index/index/hello',
