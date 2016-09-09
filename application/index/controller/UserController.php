@@ -5,6 +5,25 @@
 	
 	class UserController{
 		public function index(){
+			
+			//-- 查询全部（无条件）
+			$list = User::all();
+			foreach($list as $user){
+				echo $user->nickname . '<br/>';
+				echo $user->email . '<br/>';
+				echo date('Y/m/d',$user->birthday) . '<br/>';
+				echo '---------------------------------<br/>';
+			}
+			//-- 查询全部带条件
+			$list = User::all(['status'=>0]);
+			foreach($list as $user){
+				echo $user->nickname . '<br/>';
+				echo $user->email . '<br/>';
+				echo date('Y/m/d',$user->birthday) . '<br/>';
+				echo '---------------------------------<br/>';
+			}
+			
+			
 			return 'Hello User Controller';
 		}
 		
