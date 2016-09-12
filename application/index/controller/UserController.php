@@ -11,7 +11,8 @@
 			foreach($list as $user){
 				echo $user->nickname . '<br/>';
 				echo $user->email . '<br/>';
-				echo date('Y/m/d',$user->birthday) . '<br/>';
+				//echo date('Y/m/d',$user->birthday) . '<br/>';
+				echo $user->birthday . '<br/>';
 				echo '---------------------------------<br/>';
 			}
 			//-- 查询全部带条件
@@ -19,7 +20,8 @@
 			foreach($list as $user){
 				echo $user->nickname . '<br/>';
 				echo $user->email . '<br/>';
-				echo date('Y/m/d',$user->birthday) . '<br/>';
+				//echo date('Y/m/d',$user->birthday) . '<br/>';
+				echo $user->birthday . '<br/>';
 				echo '---------------------------------<br/>';
 			}
 			
@@ -36,7 +38,8 @@
 			
 			$user->nickname = '流年';
 			$user->email = 'thinkphp5@163.com';
-			$user->birthday = strtotime('1977-03-05');
+			//$user->birthday = strtotime('1977-03-05');
+			$user->birthday = '1992-03-05';
 			if($user->save())
 				return '用户[ ' . $user->nickname . ':' . $user->id . ' ]新增成功';
 			return $user->getError();
@@ -66,8 +69,10 @@
 		
 		public function read($id){
 			$user = User::get($id);
-			echo $user['nickname'] . '<br/>';
-			echo $user->email . '<br/>';
-			echo date('Y/m/d',$user->birthday).'<br/>';
+			echo '昵称：' . $user['nickname'] . '<br/>';
+			echo '邮箱：' . $user->email . '<br/>';
+			//echo date('Y/m/d',$user->birthday).'<br/>';
+			echo '生日：' . $user->birthday . '<br/>';
+			echo '状态：' . $user->status . '<br/>';
 		}
 	}
