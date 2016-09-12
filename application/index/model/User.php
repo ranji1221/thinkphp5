@@ -30,6 +30,9 @@
 		
 		//-- status修改器
 		protected function setStatusAttr($value,$data){
+			//echo $value;
+			if($value != null)
+				return $value;
 			return '流年' == $data['nickname'] ? 1 : 2;
 		}
 

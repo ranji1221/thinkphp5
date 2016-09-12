@@ -36,8 +36,9 @@
 		public function add(){
 			$user = new User;
 			
-			$user->nickname = '流年';
+			$user->nickname = '坚持';
 			$user->email = 'thinkphp5@163.com';
+			$user->status = -1;
 			//$user->birthday = strtotime('1977-03-05');
 			$user->birthday = '1992-03-05';
 			if($user->save())
