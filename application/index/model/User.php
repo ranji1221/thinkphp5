@@ -3,7 +3,7 @@
 	namespace app\index\model;
 	
 	use think\Model;
-	
+	  
 	class User extends Model{
 		//-- 前面读取用户生日的时候，使用了date方法进行日期的格式处理输出，但是每次读取数据后都需要这样处理就显得非常麻烦。
 		//-- 使用读取器功能就可以简化类似的数据处理操作，例如，我们给User模型添加读取器的定义方法
