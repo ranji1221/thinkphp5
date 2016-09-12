@@ -2,7 +2,8 @@
 	namespace app\index\controller;
 	
 	use app\index\model\User;
-	
+	use think\Request;
+		
 	class UserController{
 		public function index(){
 			
@@ -30,19 +31,36 @@
 		}
 		
 		public function create(){
-			return 'Create User';
+			//return 'Create User';
+			return view();
 		}
 		
-		public function add(){
+		public function add(Request $request){
+			/*
 			$user = new User;
 			
 			$user->nickname = '坚持';
 			$user->email = 'thinkphp5@163.com';
 			$user->status = -1;
 			//$user->birthday = strtotime('1977-03-05');
-			$user->birthday = '1992-03-05';
+			$user->birthday = '1992/03/05';
 			if($user->save())
 				return '用户[ ' . $user->nickname . ':' . $user->id . ' ]新增成功';
+			return $user->getError();
+			*/
+			
+			$user = new User;
+dump(input());
+echo '----------------------';
+dump(request()->post());
+
+			//$user['nickname'] = $request->post('nickname');
+			//$user['email'] = $request->post('email');
+			//$user['birthday'] = $request->post('birthday');
+			
+			if($user->allowField(true)->save(request()->post())){
+				return '用户[' . $user->nickname . ':' . $user->id . ' ]新增成功';
+			}
 			return $user->getError();
 		}
 		
