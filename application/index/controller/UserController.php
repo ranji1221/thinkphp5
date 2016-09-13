@@ -50,15 +50,15 @@
 			*/
 			
 			$user = new User;
-dump(input());
-echo '----------------------';
-dump(request()->post());
+//dump(input());
+//echo '----------------------';
+//dump(request()->post());
 
 			//$user['nickname'] = $request->post('nickname');
 			//$user['email'] = $request->post('email');
 			//$user['birthday'] = $request->post('birthday');
 			
-			if($user->allowField(true)->save(request()->post())){
+			if($user->allowField(true)->validate(true)->save(request()->post())){
 				return '用户[' . $user->nickname . ':' . $user->id . ' ]新增成功';
 			}
 			return $user->getError();
