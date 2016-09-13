@@ -21,8 +21,13 @@
 		//-- 定义自动完成的属性
 		protected $insert = ['status' => 1];
 		
-		//-- 定义关联方法(方法名可以随意)
+		//-- 定义一对一的关联方法(方法名可以随意)
 		public function profile(){
 			return $this->hasOne('app\relation\model\Profile');
+		}
+		
+		//-- 定义一对多的关联方法
+		public function bankcards(){
+			return $this->hasMany('app\relation\model\BankCard');
 		}
 	}

@@ -5,6 +5,8 @@
 	
 	use app\relation\model\Profile;
 	
+	use app\relation\model\BankCard;
+	
 	class UserController{
 		
 		//-- one To one add
@@ -27,6 +29,18 @@
 				return '新用户增加成功！';
 			}
 			return $user->getError();
+		}
+		
+		public function test(){
+			$bankCard = new BankCard;
+			
+			$bankCard['cardName'] = '民生信用卡';
+			$bankCard['cardNo'] = '1922 3455 9981 4456';
+			$bankCard['publish_time'] = '2016-09-13';
+			$bankCard['user_id'] = 1;
+			if($bankCard->save())
+				return '添加成功';
+			return $bankCard->getError();
 		}
 		
 		//-- One To One Query
