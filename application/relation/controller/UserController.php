@@ -31,6 +31,7 @@
 			return $user->getError();
 		}
 		
+		/* 仅用来测试，没有任何其他的作用
 		public function test(){
 			$bankCard = new BankCard;
 			
@@ -41,7 +42,7 @@
 			if($bankCard->save())
 				return '添加成功';
 			return $bankCard->getError();
-		}
+		}*/
 		
 		//-- One To One Query
 		public function read($id){
@@ -102,4 +103,42 @@
 			}
 			return $user->getError();
 		}
+		
+		//-- One to Many   addBook    单个增加  注意一对多的时候在save()方法前不能直接调用属性$user->bankcards，必须调用方法$user->bankcards()
+		public function addBook($id){
+			$user = User::get($id);
+			
+			$bankCard = new BankCard;
+			$bankCard['cardName'] = '民生信用卡';
+			$bankCard['cardNo'] = '1922 3455 9981 4456';
+			$bankCard['publish_time'] = '2016-09-13';
+			
+			$user->bankcards()->save($bankCard);
+			
+			return '添加bankCard成功!';
+		}
+		
+		//-- One to Many   addBooks    多个增加
+		public function addBooks($id){
+			$user = User::get($id);
+				
+			$bankCards = [
+					['cardName'=>'兴业银行', 'cardNo'=>'6666 8888 7777 5555', 'publish_time'=>'2016-05-08'],
+					['cardName'=>'招商银行', 'cardNo'=>'7474 9989 8888 3333', 'publish_time'=>'2016-09-18'],
+			];
+			$user->bankcards()->saveAll($bankCards);
+				
+			return '添加bankCard成功!';
+		}
+		
+		//-- One to Many Query 
+		public function readBooks($id){
+			$user = User::get($id);
+			
+			$bankCards = $user->bankcards;
+			
+			dump($bankCards);
+			
+		}
+		
 	}
