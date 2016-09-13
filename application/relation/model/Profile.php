@@ -2,7 +2,15 @@
 	namespace app\relation\model;
 	
 	use think\Model;
-	
+	/**
+	 * One To One Config
+	 * 
+	 * 用户档案信息类（详细信息类）
+	 * 对应数据库表think_profile
+	 * 数据库表可以不需要建立主外键的关系，而依靠代码级来控制一对一
+	 * @author Administrator
+	 *
+	 */
 	class Profile extends Model{
 		protected  $type = [
 				'birthday' => 'timestamp:Y-m-d'
